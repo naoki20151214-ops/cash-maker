@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+const base = import.meta.env.BASE_URL;
+
+const formatDate = (d: Date) =>
+  d.toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+<BaseLayout>
+  <h1 class="page-title">{SITE_TITLE}</h1>
+  <p class="page-lead">{SITE_DESCRIPTION}</p>
+
+  <ul class="post-list">
+    {posts.slice(0, 10).map((post) => (
+      <li class="post-card">
+        <a href={`${base}/blog/${post.id}/`}>{post.data.title}</a>
+        <p class="post-meta">{formatDate(post.data.pubDate)}</p>
+        <p>{post.data.description}</p>
+        <div>
+          {post.data.tags.map((tag) => <span class="tag">#{tag}</span>)}
+        </div>
+      </li>
+    ))}
+  </ul>
+</BaseLayout>

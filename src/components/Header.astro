@@ -1,0 +1,13 @@
+---
+import { SITE_TITLE } from '../consts';
+const base = import.meta.env.BASE_URL;
+---
+<header class="site-header">
+  <div class="container">
+    <a class="site-title" href={base}>{SITE_TITLE}</a>
+    <nav class="site-nav">
+      <a href={`${base}/blog/`}>記事一覧</a>
+      <a href={`${base}/about/`}>このサイトについて</a>
+    </nav>
+  </div>
+</header>

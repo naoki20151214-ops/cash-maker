@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://naoki20151214-ops.github.io/cash-maker/sitemap-index.xml

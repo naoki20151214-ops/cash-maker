@@ -1,0 +1,15 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  href: string;
+  ctaText?: string;
+}
+
+const { title, description, href, ctaText = '詳細を見る' } = Astro.props;
+---
+<div class="affiliate-box">
+  <p class="affiliate-label">PR</p>
+  <p><strong>{title}</strong><br />{description}</p>
+  <a class="affiliate-cta" href={href} rel="nofollow sponsored" target="_blank">{ctaText}</a>
+</div>
